@@ -1,0 +1,18 @@
+import string
+import time
+import random
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+driver = webdriver.Chrome()
+driver.get('https://mybox.cl/iniciar-sesion?back=my-account')
+time.sleep(5)
+for x in range(100):
+    usr = driver.find_element_by_name("email")
+    usr.clear()
+    usr.send_keys(email)
+    psr= driver.find_element_by_name("password")
+    psr.send_keys(password)
+    print(password)
+    clk = driver.find_element_by_xpath('//*[@id="submit-login"]').submit()
+    time.sleep(1)
