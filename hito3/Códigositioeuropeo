@@ -1,0 +1,82 @@
+import string
+import time
+import random
+
+#Carga el módulo webdriver para implementar las clases y métodos para el soporte de los diferentes navegadores
+from selenium import webdriver
+
+#Carga la configuración del teclado virtual para simular las entradas de teclado
+from selenium.webdriver.common.keys import Keys
+
+#Crea una instancia de Chrome que se pueda controlar con comandos de selenium.
+driver = webdriver.Chrome()
+
+
+#Login
+email = "josf.andrade46@gmail.com"
+password = "password"
+
+# login a la página
+driver.get("https://app.lottawork.com/welcome")
+time.sleep(2)
+# busca username/email 
+usr = driver.find_element_by_name('email')
+usr.clear()
+usr.send_keys(email)
+# busca la clave y la inserta 
+psr= driver.find_element_by_name('password').send_keys(password)
+button= driver.find_element_by_xpath('//*[@id="titulo-app"]/div[3]/form/div[4]/div[2]/button').click() # click en el boton para hacer login
+time.sleep(2)
+
+
+#Registrarse
+name= "francisca"
+apellido= "ramirez"
+email = "franramirez.fr03@gmail.com"
+password = "Password2"
+password2= "Password2"
+telefono= 978983678
+rut= 123456789
+
+# registrarse a la página
+driver.get("https://app.lottawork.com/register")
+# busca username/email 
+usr = driver.find_element_by_name("email")
+usr.send_keys(email)
+# busca la clave y la inserta 
+psr= driver.find_element_by_name("password")
+psr.send_keys(password)
+driver.find_element_by_name("password-confirm").send_keys("password2")
+driver.find_element_by_tel("phone").send_keys("telefono")
+driver.find_element_by_text("rut").send_keys("rut")
+time.sleep(1)
+driver.find_element_by_xpath('//*[@id="registrationForm"]/div[3]/label').click() # click en el boton para aceptar condiciones
+driver.find_element_by_xpath('//*[@id="registrationFormSubmit"]').click() # click en el boton para registrarse
+time.sleep(5) 
+
+
+#recuperar contraseña
+email="josf.andrade46@gmail.com"
+
+driver.get("https://mybox.cl/recuperar-contraseña")
+usr = driver.find_element_by_name("email")
+usr.send_keys(email)
+driver.find_element_by_xpath('/html/body/main/section/div[2]/div/section/section/section/form/button').click() # click en el boton para hacer recuperar contraseña
+time.sleep(2)
+
+#modificación de contraseña
+name="josefa"
+apellidos="andrade"
+email = "josf.andrade46@gmail.com"
+password = "password"
+passwordnew="password5"
+
+driver.get("https://mybox.cl/datos-personales")
+
+psr= driver.find_element_by_name("password")
+psr.send_keys(password)
+driver.find_element_by_name("password_new").send_keys(passwordnew)
+
+time.sleep(1)
+driver.find_element_by_xpath('//*[@id="customer-form"]/footer/div/div[2]/button').click() # click en el boton para hacer login
+time.sleep(2)
